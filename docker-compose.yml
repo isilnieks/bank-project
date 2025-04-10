@@ -1,0 +1,32 @@
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      # Exclude cache directory from volume
+      - /var/www/html/var/cache
+    depends_on:
+      - database
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "mysql://user:password@database:3306/bank?serverVersion=8.0"
+      EXCHANGE_RATE_API_URL: "https://api.currencyfreaks.com/v2.0/rates/latest"
+
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bank
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db-data:
