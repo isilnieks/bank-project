@@ -69,8 +69,3 @@ Request body:
 ```
 docker-compose exec web bin/phpunit
 ```
-
-## URLs
-
-- Application: http://localhost:8080
-- Database: localhost:3306 (user/password)
