@@ -15,7 +15,7 @@
 
 3. Get API key from https://currencyfreaks.com/ and add to `.env`:
    ```
-   CURRENCY_FREAK_API_KEY=your_api_key_here
+   CURRENCY_FREAKS_API_KEY=your_api_key_here
    ```
 
 4. Start containers:
@@ -23,12 +23,17 @@
    docker-compose up -d
    ```
 
-5. Run migrations:
+5. Install dependencies:
    ```
    docker-compose exec web php bin/console doctrine:migrations:migrate
    ```
 
-6. Load sample data (optional):
+6. Run migrations:
+   ```
+   docker-compose exec web php bin/console doctrine:migrations:migrate
+   ```
+
+7. Load sample data (optional):
    ```
    docker-compose exec web php bin/console doctrine:fixtures:load
    ```
